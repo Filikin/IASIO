@@ -1,0 +1,6 @@
+<apex:page standardController="Web_HR_Absence__c" showHeader="false">
+	<apex:sectionHeader title="****** YOUR APPLICATION HAS BEEN PASSED TO YOUR LINE MANAGER ******"/>
+	<apex:form >
+	
+	</apex:form>
+</apex:page>

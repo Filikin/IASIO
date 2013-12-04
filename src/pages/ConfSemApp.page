@@ -1,0 +1,78 @@
+<apex:page standardController="Seminar_Conference_Application__c" showheader="False">
+    <div align="Center">
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td><img src="http://www.iasio.ie/wp-content/themes/iasio/images/logo.png" width="120" height="50" border="0" /></td>
+</tr>
+</table> 
+<apex:outputText value="SEMINARS / CONFERENCES"style="font-weight:bold;font-size:20px;font-style:underline;"/><BR/><BR/>
+<apex:outputText value="All requests to attend seminars or conferences should be accompanied by relevant promotional literature or invitation if available and this should be sent to your line manager by email."style="font-weight:bold;font-size:20px;font-style:underline;"/><BR/><BR/><BR/>
+<apex:outputText value="Request to attend seminar or conference"style="font-weight:bold;font-size:20px;font-style:underline;"/>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td> </td>
+</tr>
+</table>
+<div align="Left">
+<apex:outputText value=" "style="font-weight:bold;font-style:underline;"/>
+<!--<apex:outputText value="Enter Details and  press SUBMIT button"style="font-weight:bold;font-style:underline;"/>-->
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td> </td>
+</tr>
+</table>
+
+<apex:outputText value="   "style="font-weight:bold;font-style:underline;"/>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td> </td>
+</tr>
+</table>
+
+<apex:outputText value="   "style="font-weight:bold;font-style:underline;"/>
+                     
+                                      
+
+
+    
+        <table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td> </td>
+</tr>
+</table>
+
+
+
+
+<!--    <apex:sectionHeader title="{!$ObjectType.Seminar_Conference_Application__c.label} Edit" subtitle="New {!$ObjectType.Seminar_Conference_Application__c.name}"/>-->
+    <apex:form >
+    <apex:pageBlock title="Please enter details and press submit button ">
+        <apex:pageBlockButtons >
+            <apex:commandButton action="{!save}" value="Submit"/>
+            
+        </apex:pageBlockButtons>
+        <apex:pageBlockSection showHeader="false" title="Employee Details" columns="1">
+            <apex:inputField value="{!Seminar_Conference_Application__c.Name_Submitted_Online__c}" Required="TRUE"/>
+            <apex:pageBlockSectionItem />
+            <apex:inputField value="{!Seminar_Conference_Application__c.Email_Address__c}" Required="TRUE"/>
+            <apex:pageBlockSectionItem />
+            <apex:inputField value="{!Seminar_Conference_Application__c.Employee_Number__c}"Required="TRUE"/>
+            <apex:pageBlockSectionItem />
+        </apex:pageBlockSection>
+        <apex:pageBlockSection showHeader="TRUE" title="Event Details" columns="3">
+            <apex:inputField value="{!Seminar_Conference_Application__c.Details__c}"/>
+            
+            <apex:inputField value="{!Seminar_Conference_Application__c.Conference__c}"/>
+            
+            <apex:inputField value="{!Seminar_Conference_Application__c.Seminar__c}"/>
+        
+            <apex:inputField value="{!Seminar_Conference_Application__c.Dates_and_Times__c}"/>
+            
+            <apex:inputField value="{!Seminar_Conference_Application__c.Cost_per_Person__c}"/>
+            <apex:pageBlockSectionItem />
+        </apex:pageBlockSection>
+        <BR/><BR/>
+    <apex:outputText value="You may be required to make a written submission outlining how the conference or seminar will enhance your knowledge or skills in your present position and ultimately be of benefit to your clients or your particular job function."style="font-weight:bold;font-size:20px;font-style:underline;"/><BR/>  
+    </apex:pageBlock>
+    </apex:form>
+</apex:page>

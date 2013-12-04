@@ -1,0 +1,107 @@
+<apex:page standardController="Contact" extensions="SecureDataController" showHeader="false" action="{!loadSensitiveData}">
+    <apex:pageMessages />
+ 	<apex:form id="clientDetailsForm">
+ 		<apex:pageBlock id="clientDetails" mode="maindetail">
+			<apex:pageBlockButtons >
+		 		<apex:commandButton value="Edit Sensitive Details" action="{!editSecureDetails}" rerender="clientDetails" rendered="{!editting == false && permissionToEdit}"/>
+		 		<apex:commandButton value="Delete Sensitive Details" action="{!deleteSecureDetails}" rerender="clientDetails" rendered="{!editting == false && ($Profile.Name =='System Administrator')}"/>
+		 		<apex:commandButton value="Save Sensitive Details" action="{!saveSecureDetails}" rerender="clientDetails" rendered="{!editting}"/>
+		 		<apex:commandButton value="Cancel" action="{!cancelSecureDetails}" rerender="clientDetails" rendered="{!editting}"/>
+			</apex:pageBlockButtons>
+			<apex:outputPanel id="display" layout="none" rendered="{!editting == false}">
+                <table class="detailList">
+                	<tr>
+                        <th style="width:94px" class="headerRow"></th>
+                        <th style="width:170px" class="headerRow"></th>
+                        <th style="width:94px" class="headerRow"></th>
+                        <th style="width:170px" class="headerRow"></th>
+                        <th style="width:94px" class="headerRow"></th>
+                        <th style="width:170px" class="headerRow"></th>
+                    </tr>
+                    <tr>
+						<td class="labelCol">Name</td><td class="dataCol"><apex:OutputText value="{!secureFirstName} {!secureLastName}" style="width:94px"/></td>
+						<td class="labelCol">Nickname</td><td class="dataCol"><apex:OutputText value="{!secureNickname}" style="width:94px"/></td>
+					</tr>
+					<tr>
+						<td class="labelCol">Mobile phone</td><td class="dataCol" style="width:170px"><apex:OutputText value="{!securePhone1}" style="width:170px"/></td>
+						<td class="labelCol">Home phone</td><td class="dataCol" style="width:170px"><apex:OutputText value="{!securePhone2}" style="width:170px"/></td>
+						<td class="labelCol">Other phone</td><td class="dataCol" style="width:170px"><apex:OutputText value="{!securePhone3}" style="width:170px"/></td>
+					</tr>
+					<tr>
+ 						<td class="labelCol">Address 1 Type</td><td class="dataCol" style="width:170px"><apex:OutputText value="{!secureAddress1Type}" style="width:170px"/></td>
+    					<td class="labelCol">Address 2 Type</td><td class="dataCol" style="width:170px"><apex:OutputText value="{!secureAddress2Type}" style="width:170px"/></td>
+						<td class="labelCol">Address 3 Type</td><td class="dataCol" style="width:170px"><apex:OutputText value="{!secureAddress3Type}" style="width:170px"/></td>
+					</tr>
+					<tr>
+						<td class="labelCol">Address 1</td><td class="dataCol" style="width:170px"><apex:InputTextArea value="{!secureAddress1}" readonly="true" style="width:170px"/></td>
+						<td class="labelCol">Address 2</td><td class="dataCol" style="width:170px"><apex:InputTextArea value="{!secureAddress2}" readonly="true" style="width:170px"/></td>
+						<td class="labelCol">Address 3</td><td class="dataCol" style="width:170px"><apex:InputTextArea value="{!secureAddress3}" readonly="true" style="width:170px"/></td>
+					</tr>
+					<tr>
+						<td class="labelCol">Emergency Person</td><td class="dataCol" style="width:170px"><apex:OutputText value="{!secureEmergencyPerson}" style="width:170px"/></td>
+						<td class="labelCol">Emergency Number</td><td class="dataCol" style="width:170px"><apex:OutputText value="{!secureEmergencyNumber}" style="width:170px"/></td>
+						<td class="labelCol">Emergency Relationship</td><td class="dataCol" style="width:170px"><apex:OutputText value="{!secureEmergencyRelationship}" style="width:170px"/></td>
+					</tr>
+                </table>
+			</apex:outputPanel>
+			<apex:outputPanel id="edit" layout="none" rendered="{!editting}">
+				<table class="detailList">
+	               	<tr>
+                        <th style="width:94px" class="headerRow"></th>
+                        <th style="width:170px" class="headerRow"></th>
+                        <th style="width:94px" class="headerRow"></th>
+                        <th style="width:170px" class="headerRow"></th>
+                        <th style="width:94px" class="headerRow"></th>
+                        <th style="width:170px" class="headerRow"></th>
+                    </tr>
+                    <tr>
+						<td class="labelCol">First Name</td><td class="dataCol" style="width:94px"><apex:inputText value="{!secureFirstName}" style="width:94px"/></td>
+						<td class="labelCol">Last Name</td><td class="dataCol" style="width:94px"><apex:inputText value="{!secureLastName}" style="width:94px"/></td>
+						<td class="labelCol">Nickname</td><td class="dataCol" style="width:94px"><apex:inputText value="{!secureNickname}" style="width:94px"/></td>
+					</tr>
+					<tr>
+						<td class="labelCol">Mobile phone</td><td class="dataCol" style="width:94px"><apex:inputText value="{!securePhone1}" style="width:94px"/></td>
+						<td class="labelCol">Home phone</td><td class="dataCol" style="width:94px"><apex:inputText value="{!securePhone2}" style="width:94px"/></td>
+						<td class="labelCol">Other phone</td><td class="dataCol" style="width:94px"><apex:inputText value="{!securePhone3}" style="width:94px"/></td>
+					</tr>
+					<tr>
+						<td class="labelCol">Address 1 Type</td><td class="dataCol" style="width:170px">
+      						<apex:selectList value="{!secureAddress1Type}" multiselect="false" style="width:170px" size="1">
+				        	    <apex:selectOption itemValue="Blank" itemLabel=""/>
+				        	    <apex:selectOption itemValue="Home" itemLabel="Home"/>
+            					<apex:selectOption itemValue="Parent's house" itemLabel="Parent's house"/>
+            					<apex:selectOption itemValue="Temporary Accommodation" itemLabel="Temporary Accommodation"/>
+    	   					 </apex:selectList>
+    	   				</td>
+						<td class="labelCol">Address 2 Type</td><td class="dataCol" style="width:170px">
+      						<apex:selectList value="{!secureAddress2Type}" multiselect="false" style="width:170px" size="1">
+				        	    <apex:selectOption itemValue="Blank" itemLabel=""/>
+				        	    <apex:selectOption itemValue="Home" itemLabel="Home"/>
+            					<apex:selectOption itemValue="Parent's house" itemLabel="Parent's house"/>
+            					<apex:selectOption itemValue="Temporary Accommodation" itemLabel="Temporary Accommodation"/>
+    	   					 </apex:selectList>
+						</td>
+						<td class="labelCol">Address 3 Type</td><td class="dataCol" style="width:170px">
+      						<apex:selectList value="{!secureAddress3Type}" multiselect="false" style="width:170px" size="1">
+				        	    <apex:selectOption itemValue="Blank" itemLabel=""/>
+				        	    <apex:selectOption itemValue="Home" itemLabel="Home"/>
+            					<apex:selectOption itemValue="Parent's house" itemLabel="Parent's house"/>
+            					<apex:selectOption itemValue="Temporary Accommodation" itemLabel="Temporary Accommodation"/>
+    	   					 </apex:selectList>
+						</td>
+					</tr>
+					<tr>
+						<td class="labelCol">Address 1</td><td class="dataCol" style="width:170px"><apex:inputTextarea value="{!secureAddress1}" style="width:170px"/></td>
+						<td class="labelCol">Address 2</td><td class="dataCol" style="width:170px"><apex:inputTextarea value="{!secureAddress2}" style="width:170px"/></td>
+						<td class="labelCol">Address 3</td><td class="dataCol" style="width:170px"><apex:inputTextarea value="{!secureAddress3}" style="width:170px"/></td>
+					</tr>
+					<tr>
+						<td class="labelCol">Emergency Person</td><td class="dataCol" style="width:170px"><apex:inputText value="{!secureEmergencyPerson}" style="width:170px"/></td>
+						<td class="labelCol">Emergency Number</td><td class="dataCol" style="width:170px"><apex:inputText value="{!secureEmergencyNumber}" style="width:170px"/></td>
+						<td class="labelCol">Emergency Relationship</td><td class="dataCol" style="width:170px"><apex:inputText value="{!secureEmergencyRelationship}" style="width:170px"/></td>
+					</tr>
+				</table>
+			</apex:outputPanel>
+        </apex:pageBlock>
+	</apex:form>
+</apex:page>

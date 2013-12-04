@@ -1,0 +1,37 @@
+<apex:page standardController="Seminar_Conference_Application__c">
+	<apex:sectionHeader title="{!$ObjectType.Seminar_Conference_Application__c.label} Edit" subtitle="New {!$ObjectType.Seminar_Conference_Application__c.name}"/>
+	<apex:form >
+	<apex:pageBlock title="{!$ObjectType.Seminar_Conference_Application__c.label} Edit" mode="edit">
+		<apex:pageBlockButtons >
+			<apex:commandButton action="{!save}" value="Save"/>
+			<apex:commandButton action="{!cancel}" value="Cancel"/>
+		</apex:pageBlockButtons>
+		<apex:pageBlockSection showHeader="true" title="Employee Details" columns="2">
+			<apex:inputField value="{!Seminar_Conference_Application__c.Employee__c}"/>
+			<apex:pageBlockSectionItem />
+			<apex:inputField value="{!Seminar_Conference_Application__c.Name_Submitted_Online__c}"/>
+			<apex:pageBlockSectionItem />
+			<apex:inputField value="{!Seminar_Conference_Application__c.Email_Address__c}"/>
+			<apex:pageBlockSectionItem />
+			<apex:inputField value="{!Seminar_Conference_Application__c.Employee_Number__c}"/>
+			<apex:pageBlockSectionItem />
+		</apex:pageBlockSection>
+		<apex:pageBlockSection showHeader="true" title="Event Details" columns="2">
+			<apex:inputField value="{!Seminar_Conference_Application__c.Details__c}"/>
+			<apex:pageBlockSectionItem />
+			<apex:inputField value="{!Seminar_Conference_Application__c.Conference__c}"/>
+			<apex:pageBlockSectionItem />
+			<apex:inputField value="{!Seminar_Conference_Application__c.Seminar__c}"/>
+			<apex:pageBlockSectionItem />
+			<apex:inputField value="{!Seminar_Conference_Application__c.Dates_and_Times__c}"/>
+			<apex:pageBlockSectionItem />
+			<apex:inputField value="{!Seminar_Conference_Application__c.Cost_per_Person__c}"/>
+			<apex:pageBlockSectionItem />
+		</apex:pageBlockSection>
+		<apex:pageBlockSection showHeader="true" title="Approval" columns="2">
+			<apex:inputField value="{!Seminar_Conference_Application__c.Status__c}"/>
+			<apex:pageBlockSectionItem />
+		</apex:pageBlockSection>
+	</apex:pageBlock>
+	</apex:form>
+</apex:page>

@@ -1,0 +1,123 @@
+<apex:page standardController="Training_Course_Application__c" showheader="False">
+    <div align="Center">
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td><img src="http://www.iasio.ie/wp-content/themes/iasio/images/logo.png" width="120" height="50" border="0" /></td>
+
+
+</tr>
+</table>      
+
+<apex:outputText value="NEW TRAINING COURSE REQUEST"style="font-weight:bold;font-size:20px;font-style:underline;"/><BR/>
+<apex:outputText value="(Not Discussed at Review or Performance Appraisal Meeting)"style="font-weight:bold;font-size:20px;font-style:underline;"/><BR/>
+<apex:outputText value="Please list the course you wish to pursue.  If the course is modular based over a number of years, list the modules each year."style="font-weight:bold;font-size:20px;font-style:underline;"/>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td> </td>
+</tr>
+</table>
+<div align="Left">
+<apex:outputText value=" "style="font-weight:bold;font-style:underline;"/>
+<!--<apex:outputText value="Enter Details and  press SUBMIT button"style="font-weight:bold;font-style:underline;"/>-->
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td> </td>
+</tr>
+</table>
+
+<apex:outputText value="   "style="font-weight:bold;font-style:underline;"/>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td> </td>
+</tr>
+</table>
+
+<apex:outputText value="   "style="font-weight:bold;font-style:underline;"/>
+                     
+                                      
+
+
+    
+        <table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td> </td>
+</tr>
+</table>
+
+    <apex:form >
+      <apex:pageBlock title="Please enter details and press submit button ">
+        <apex:pageBlockButtons >
+            <apex:commandButton action="{!save}" value="Submit Application"/>
+            
+        </apex:pageBlockButtons>
+
+
+
+
+
+
+
+
+        <apex:pageBlockSection showHeader="false" title="Employee Details" columns="2">
+            <apex:inputField value="{!Training_Course_Application__c.Employee_Number__c}" Required="TRUE"/>
+<!--            <apex:pageBlockSectionItem />-->
+<!--            <apex:inputField value="{!Training_Course_Application__c.Employee__c}"/>-->
+<!--            <apex:pageBlockSectionItem />-->
+            <apex:inputField value="{!Training_Course_Application__c.Name_on_Form__c}" Required="TRUE"/>
+            
+            <apex:pageBlockSectionItem />
+            <apex:inputField value="{!Training_Course_Application__c.Location__c}" />
+            
+            <apex:pageBlockSectionItem />
+            <apex:inputField value="{!Training_Course_Application__c.Manager__c}" />
+            <apex:pageBlockSectionItem />
+                
+            <apex:inputField value="{!Training_Course_Application__c.Course_Start_Date__c}"/>
+            <apex:inputField value="{!Training_Course_Application__c.Course_End_Date__c}"/>
+            <apex:pageBlockSectionItem />
+            <apex:pageBlockSectionItem />
+            <apex:inputField value="{!Training_Course_Application__c.Email_Address__c}" Required="TRUE"/>
+            <apex:pageBlockSectionItem />
+            <apex:pageBlockSectionItem />
+            <apex:pageBlockSectionItem />
+        </apex:pageBlockSection>
+        <apex:pageBlockSection showHeader="false" title="Course Cost and Details.  Costs should include Fees, Travel Expenses, Lunches, Text Books and all other course materials and associated costs" columns="1">
+<apex:outputText value="Course Cost and Details.  Costs should include Fees, Travel Expenses, Lunches, Text Books and all other course materials and associated costs" style="font-weight:bold;font-size:15px;font-style:underline;"/>          
+            <apex:inputField value="{!Training_Course_Application__c.Course_Title_Location_Accrediting_Body__c}" style="width:500px;height:50px;"/>
+            <apex:pageBlockSectionItem />
+            
+            <apex:inputField value="{!Training_Course_Application__c.Costs_2012__c}"/>
+            <apex:inputField value="{!Training_Course_Application__c.Costs_2013_Incl_VAT__c}"/>
+            <apex:inputField value="{!Training_Course_Application__c.Costs_2014_Incl_VAT__c}"/>
+            <apex:pageBlockSectionItem />
+            <apex:pageBlockSectionItem />
+            <apex:pageBlockSectionItem />
+            <apex:pageBlockSection showHeader="false" title="Justification for Training.  What benefit will it bring you in your role, to your clients & how can it add value to the company" columns="1">
+            <apex:outputText value="Justification for Training.  What benefit will it bring you in your role, to your clients & how can it add value to the company" style="font-weight:bold;font-size:15px;font-style:underline;"/>
+            <apex:inputField value="{!Training_Course_Application__c.Justification_for_Training__c}" style="width:500px;height:100px;"/>
+            <apex:pageBlockSectionItem />
+            <apex:pageBlockSectionItem />
+            <apex:pageBlockSectionItem />
+            <apex:outputText value="Please give details of the course timetable (eg what days & times, duration etc.)"style="font-weight:bold;font-size:15px;font-style:underline;"/>
+            <apex:inputField value="{!Training_Course_Application__c.Course_Timetable__c}" style="width:500px;height:100px;"/>
+            <apex:pageBlockSectionItem />
+        </apex:pageBlockSection>
+        </apex:pageBlockSection>
+        <apex:pageBlockSection showHeader="true" title="I Approve the Above Training" columns="1" showheader="FALSE">
+            <apex:outputText value="Agreed supports to be provided (some or all of the following may be agreed)
+"style="font-weight:bold;font-size:15px;font-style:underline;"/>
+            
+            <apex:inputField value="{!Training_Course_Application__c.Funding_Amount__c}"/>
+            <apex:pageBlockSectionItem />
+            <apex:inputField value="{!Training_Course_Application__c.Study_Leave_Days__c}"/>
+            <apex:pageBlockSectionItem />
+            <apex:inputField value="{!Training_Course_Application__c.Time_out_of_Office_Days__c}"/>
+            <apex:pageBlockSectionItem />
+            <apex:inputField value="{!Training_Course_Application__c.Other__c}"/>
+            <apex:pageBlockSectionItem />
+        </apex:pageBlockSection>
+        <apex:outputText value="Please refer to Training Policy in the IASIO Staff Handbook for further information & conditions"style="font-weight:bold;font-size:20px;font-style:underline;"/><BR/>
+        
+    </apex:pageBlock>
+    </apex:form>
+</apex:page>
