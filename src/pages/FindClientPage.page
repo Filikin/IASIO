@@ -53,6 +53,18 @@
 		                  		</apex:facet>
 		                   		{!a.FirstName} {!a.LastName} 
 			                </apex:column>
+			                <apex:column > 
+		                  		<apex:facet name="header">
+		                    		<apex:outputPanel >Birth date</apex:outputPanel>
+		                  		</apex:facet>
+		                   		<apex:outputField value=" {!a.details.Birthdate}"/> 
+			                </apex:column>
+			                <apex:column > 
+		                  		<apex:facet name="header">
+		                    		<apex:outputPanel >Owner</apex:outputPanel>
+		                  		</apex:facet>
+		                   		{!a.Owner} 
+			                </apex:column>
 		              </apex:pageBlockTable>
 	            	</apex:pageBlock>
 	          	</apex:outputPanel>

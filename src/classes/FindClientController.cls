@@ -62,13 +62,14 @@ public with sharing class FindClientController
         do {
         } while (getOnePage (pageNumber++) > 0 && pageNumber<=5);
         
-	    List <Contact> clientContacts = [select ID, LastName from Contact where LastName in :clientMap.keySet() limit 500];
+	    List <Contact> clientContacts = [select ID, LastName, Birthdate, Owner.Name from Contact where LastName in :clientMap.keySet() limit 500];
         for (Contact oneContact: clientContacts)
         {
             IdentifiableClient oneClient = clientMap.get (oneContact.LastName);
             if (oneClient != null) 
             {
                 oneClient.details = oneContact;
+                oneClient.Owner = oneContact.Owner.Name;
                 results.add (oneClient);
             }
         }
