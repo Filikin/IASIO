@@ -80,31 +80,39 @@ public with sharing class FindClientController
 	{ 
         String url = settings.baseURL__c + 'api/client/?User=' + settings.Username__c + '&key=' + settings.Key__c + '&secret=' + settings.Secret__c + '&page=' + pageNo;
         url += '&ordering=firstName';
-        if (searchFirstNameString != null && searchFirstNameString.length() > 0) url += '&firstName=' + searchFirstNameString;
-        if (searchLastNameString != null && searchLastNameString.length() > 0) url += '&lastName=' + searchLastNameString;
- 		
+        if (searchFirstNameString != null && searchFirstNameString.length() > 0) url += '&firstName=' + system.Encodingutil.urlEncode(searchFirstNameString,'UTF-8');
+        if (searchLastNameString != null && searchLastNameString.length() > 0) url += '&lastName=' + system.Encodingutil.urlEncode(searchLastNameString,'UTF-8');
+ 		system.debug ('URL: ' + url);
         String result = RestHelpers.getContent (url);
         List<Object> clientsFound = null;
         try
         {
             Map<String, Object> m= (Map<String, Object>)JSON.deserializeUntyped(result);
             clientsFound = (List<Object>)m.get('objects');
-            system.debug (clientsFound);
             for (Object oneClient: clientsFound)
             {
-                system.debug (oneClient);
                 Map<String, Object> workingClient = (Map<String, Object>)oneClient;
                 IdentifiableClient newClient = new IdentifiableClient ();
-                newClient.FirstName = (String)workingClient.get('firstName');
-                newClient.LastName = (String)workingClient.get('lastName');
-                newClient.Ref = (String)workingClient.get('ID');
+                try
+                {
+	                newClient.FirstName = (String)workingClient.get('firstName');
+		            newClient.LastName = (String)workingClient.get('lastName');
+                	newClient.Ref = (String)workingClient.get('ID');
+                }
+                catch (Exception e)
+                {
+  		        	system.debug ('In getOnePage: ' + e.getMessage());
+                	continue; // no point in trying to continue
+                }
+                
                 clientMap.put (newClient.Ref, newClient);
             }
         }
         catch (Exception e)
         {
-            system.debug (e.getMessage());
-            return 0;
+            system.debug ('In getOnePage Overall: ' + e.getMessage());
+        	system.debug ('In getOnePage result: ' + result);
+            return 1; // see if it moves on to the next page
         }
 		return clientsFound.size();
 	}
