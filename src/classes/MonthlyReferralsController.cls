@@ -23,7 +23,7 @@ public with sharing class MonthlyReferralsController
 			referralSet.add (oneOutcome.Referral__c);
 		
 		
-		Map<ID, Client_Referral__c> referrals = new Map<ID, Client_Referral__c>([select ID, Client__c, Referral_ID__c, Referral_Type__c, Referred_From__c, First_Status_Outcome_Date__c, Referred_By__c, OwnerID, (select ID, Placement_Date__c, Status__c, Outcome_Types__c, Reason_for_Discontinued__c  from Client_Placements__r order by Placement_Date__c DESC) from Client_Referral__c where ID in :referralSet]);
+		Map<ID, Client_Referral__c> referrals = new Map<ID, Client_Referral__c>([select ID, Name, Client__c, Referral_ID__c, Referral_Type__c, Referred_From__c, First_Status_Outcome_Date__c, Referred_By__c, OwnerID, (select ID, Placement_Date__c, Status__c, Outcome_Types__c, Reason_for_Discontinued__c  from Client_Placements__r order by Placement_Date__c DESC) from Client_Referral__c where ID in :referralSet]);
 		Set <ID> clientSet = new Set<ID>();
 		Set <ID> referralOwnersSet = new Set<ID>();
 		for (Client_Referral__c oneReferral: referrals.Values())
@@ -53,7 +53,7 @@ public with sharing class MonthlyReferralsController
 					Client_Referral__c thisClientsReferral = referrals.get (oneReferral.Id);
 					oneClient.ProbationOfficer = thisClientsReferral.Referred_By__c;
 					oneClient.Owner = referralOwners.get(thisClientsReferral.OwnerId).Name;
-					oneClient.referralID = thisClientsReferral.Referral_ID__c;
+					oneClient.referralID = thisClientsReferral.Name; // Adele asked for the Name of the referral rather than the referral ID EK 29/4/2014
 					oneClient.referredFrom = thisClientsReferral.Referred_From__c;
 					oneClient.referredFor = thisClientsReferral.Referral_Type__c;
 					if (thisClientsReferral != null && thisClientsReferral.Client_Placements__r != null && thisClientsReferral.Client_Placements__r.size() > 0)

@@ -13,9 +13,8 @@
         <name>ApexTrigger</name>
     </types>
     <types>
-        <members>HR_Absence__c-HR-Absence Layout</members>
-        <members>HR_Training_Course__c-HR-Training Course Layout</members>
-        <name>Layout</name>
+        <members>*</members>
+        <name>CustomObject</name>
     </types>
     <version>29.0</version>
 </Package>
